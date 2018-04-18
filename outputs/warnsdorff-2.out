@@ -1,0 +1,18 @@
+ There are 4 starting points.
+ Finding the solution from each starting point...
+
+ (0, 0)
+ Knight's tour solution doesn't exist.
+
+ (0, 1)
+ Knight's tour solution doesn't exist.
+
+ (1, 0)
+ Knight's tour solution doesn't exist.
+
+ (1, 1)
+ Knight's tour solution doesn't exist.
+
+ Took about 0.00 seconds.
+ Success: 0 starting point(s).
+ Failure: 4 starting point(s).
