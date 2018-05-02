@@ -6,11 +6,16 @@
  * @license The MIT License
  */
 
-#include <bits/stdc++.h>
+#include <cmath>
+#include <ctime>
+#include <functional>
+#include <iostream>
+#include <queue>
+#include <vector>
 using namespace std;
 
 struct neighbor {
-  // c: count, i: moves index
+  // c = count, i = moves index
   int c, i;
 
   bool operator > (neighbor const& n) const {
@@ -30,17 +35,29 @@ int main() {
     {1, 2}, {2, 1}, {-1, 2}, {1, -2}, {-2, 1}, {2, -1}, {-2, -1}, {-1, -2}
   };
 
-  // Knight's move checker
+  /*! Knight's move checker
+   * I.S: -
+   * F.S: Return true if the Knight could be moved to (x, y) point.
+   *      Otherwise, false.
+   */
   function<bool(int, int)> moveable = [n](int x, int y) {
     return x > -1 && y > -1 && x < n && y < n;
   };
 
-  // Chessboard visits checker
+  /*! Chessboard visits checker
+   * I.S: -
+   * F.S: Return true if the board at the (x, y) point has been visited.
+   *      Otherwise, false.
+   */
   function<bool(int, int)> visited = [&board](int x, int y) {
     return board[x][y] > 0;
   };
 
-  // Warnsdorff's rule implementation with Backtracking method
+  /*! Warnsdorff's rule implementation with Backtracking method
+   * I.S: Blank state chessboard.
+   * F.S: Return true if the Knight's tour could be performed.
+   *      Otherwise, false. Chessboard has been filled out.
+   */
   function<bool(int, int, int)> tourable =
   [
     moves,
@@ -61,6 +78,7 @@ int main() {
 
     // Check all possible moves
     for (int i = 0; i < moves.size(); i++) {
+      // Next moves
       int nx = x + moves[i][0];
       int ny = y + moves[i][1];
 
@@ -72,8 +90,7 @@ int main() {
           int mx = nx + moves[j][0];
           int my = ny + moves[j][1];
 
-          if (moveable(mx, my) && !visited(mx, my))
-            count++;
+          if (moveable(mx, my) && !visited(mx, my)) count++;
         }
 
         neighbor ne;
@@ -84,20 +101,23 @@ int main() {
       }
     }
 
+    // If there is at least one possible move exists
     if (heap.size() > 0) {
       neighbor ne = heap.top();
       int nx = moves[ne.i][0];
       int ny = moves[ne.i][1];
 
-      if(tourable(x + nx, y + ny, p + 1))
-        return true;
+      if(tourable(x + nx, y + ny, p + 1)) return true;
     }
 
     // No solution
     return false;
   };
 
-  // Chessboard printer
+  /*! Chessboard printer
+   * I.S: -
+   * F.S: Print out the chessboard state with a pretty print format.
+   */
   function<void()> printBoard = [n, &board]() {
     int maxdigit = log10(n * n);
 
@@ -118,14 +138,20 @@ int main() {
     }
   };
 
-  // Chessboard initialization helper
+  /*! Chessboard initialization helper
+   * I.S: Current chessboard state
+   * F.S: Reset the chessboard and fill `0` on the each grid.
+   */
   function<void()> initializeBoard = [n, &board]() {
     vector<vector<int>> v (n, vector<int>(n, 0));
 
     board = v;
   };
 
-  // Return microseconds to seconds
+  /*! Return microseconds to seconds
+   * I.S: -
+   * F.S: Return the seconds form in the integer data type.
+   */
   function<float(clock_t)> toSecs = [](clock_t start) {
     return (clock() - start) / 1000000.0;
   };
