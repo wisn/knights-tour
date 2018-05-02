@@ -6,7 +6,7 @@ This repository created for educational purpose.
 
 ## Implementation
 
-* [ ] Brute-force algorithm
+* [x] Brute-force algorithm
 * [x] Common backtracking algorithm
 * [x] Warnsdorff's rule algorithm
 
@@ -80,16 +80,15 @@ Last, wait until its done.
 
 ### Brute-force Implementation
 
-To be added.
+There are at least 10 outputs included.
 
 ### Common Backtracking Implementation
 
-To be added.
+There are at least 10 outputs included.
 
 ### Warnsdorff's Rule Implementation
 
-Since the file size is too huge, there are at least 50 outputs will be
-included.
+Since the file size is too huge, there are at least 50 outputs included.
 
 ## Performance Comparison
 
@@ -111,110 +110,117 @@ and `C` is the number of fails starting point(s).
 The fails starting point could be either timeout or no solution found.
 The timeout limit is 20 seconds for each starting point.
 
-| N (NxN) | Brute-force | Common Backtracking | Warnsdorff's Rule  |
-|---------|-------------|---------------------|--------------------|
-| 1       | TBA         | 0.00s (1, 0)        | 0.00s (1, 0)       |
-| 5       | TBA         | 0.16s (13, 12)      | 0.00s (10, 15)     |
-| 6       | TBA         | 0.19s (24, 12)      | 0.00s (36, 0)      |
-| 7       | TBA         | 0.16s (16, 33)      | 0.00s (20, 29)     |
-| 8       | TBA         | 6.61s (6, 58)       | 0.00s (63, 1)      |
-| 9       | TBA         | Timeout (0, 81)     | 0.00s (41, 40)     |
-| 10      | TBA         | Timeout (0, 100)    | 0.00s (100, 0)     |
-| 11      | TBA         | TBA                 | 0.00s (59, 62)     |
-| 12      | TBA         | TBA                 | 0.00s (141, 3)     |
-| 13      | TBA         | TBA                 | 0.00s (84, 85)     |
-| 14      | TBA         | TBA                 | 0.00s (192, 4)     |
-| 15      | TBA         | TBA                 | 0.00s (113, 112)   |
-| 16      | TBA         | TBA                 | 0.00s (254, 2)     |
-| 17      | TBA         | TBA                 | 0.00s (144, 145)   |
-| 18      | TBA         | TBA                 | 0.00s (317, 7)     |
-| 19      | TBA         | TBA                 | 0.00s (178, 183)   |
-| 20      | TBA         | TBA                 | 0.00s (395, 5)     |
-| 21      | TBA         | TBA                 | 0.00s (216, 225)   |
-| 22      | TBA         | TBA                 | 0.00s (478, 6)     |
-| 23      | TBA         | TBA                 | 0.00s (263, 266)   |
-| 24      | TBA         | TBA                 | 0.00s (566, 10)    |
-| 25      | TBA         | TBA                 | 0.00s (310, 315)   |
-| 26      | TBA         | TBA                 | 0.00s (658, 18)    |
-| 27      | TBA         | TBA                 | 0.01s (356, 373)   |
-| 28      | TBA         | TBA                 | 0.01s (774, 10)    |
-| 29      | TBA         | TBA                 | 0.01s (417, 424)   |
-| 30      | TBA         | TBA                 | 0.01s (849, 51)    |
-| 31      | TBA         | TBA                 | 0.01s (480, 481)   |
-| 32      | TBA         | TBA                 | 0.01s (975, 49)    |
-| 33      | TBA         | TBA                 | 0.01s (537, 552)   |
-| 34      | TBA         | TBA                 | 0.01s (1045, 111)  |
-| 35      | TBA         | TBA                 | 0.01s (607, 618)   |
-| 36      | TBA         | TBA                 | 0.01s (1248, 48)   |
-| 37      | TBA         | TBA                 | 0.01s (673, 696)   |
-| 38      | TBA         | TBA                 | 0.01s (1268, 176)  |
-| 39      | TBA         | TBA                 | 0.01s (746, 775)   |
-| 40      | TBA         | TBA                 | 0.01s (1530, 70)   |
-| 41      | TBA         | TBA                 | 0.01s (829, 852)   |
-| 42      | TBA         | TBA                 | 0.01s (1543, 221)  |
-| 43      | TBA         | TBA                 | 0.01s (914, 935)   |
-| 44      | TBA         | TBA                 | 0.01s (1852, 84)   |
-| 45      | TBA         | TBA                 | 0.01s (968, 1057)  |
-| 46      | TBA         | TBA                 | 0.02s (1778, 338)  |
-| 47      | TBA         | TBA                 | 0.02s (1082, 1127) |
-| 48      | TBA         | TBA                 | 0.02s (2204, 100)  |
-| 49      | TBA         | TBA                 | 0.02s (1148, 1253) |
-| 50      | TBA         | TBA                 | 0.02s (2116, 384)  |
-| 51      | TBA         | TBA                 | 0.02s (1274, 1327) |
-| 52      | TBA         | TBA                 | 0.02s (2587, 117)  |
-| 53      | TBA         | TBA                 | 0.02s (1352, 1457) |
-| 54      | TBA         | TBA                 | 0.02s (2405, 511)  |
-| 55      | TBA         | TBA                 | 0.02s (1476, 1549) |
-| 56      | TBA         | TBA                 | 0.02s (2972, 164)  |
-| 57      | TBA         | TBA                 | 0.02s (1548, 1701) |
-| 58      | TBA         | TBA                 | 0.03s (2791, 573)  |
-| 59      | TBA         | TBA                 | 0.03s (1697, 1784) |
-| 60      | TBA         | TBA                 | 0.03s (3448, 152)  |
-| 61      | TBA         | TBA                 | 0.03s (1770, 1951) |
-| 62      | TBA         | TBA                 | 0.03s (3143, 701)  |
-| 63      | TBA         | TBA                 | 0.03s (1918, 2051) |
-| 64      | TBA         | TBA                 | 0.03s (3874, 222)  |
-| 65      | TBA         | TBA                 | 0.03s (2011, 2214) |
-| 66      | TBA         | TBA                 | 0.03s (3480, 876)  |
-| 67      | TBA         | TBA                 | 0.03s (2181, 2308) |
-| 68      | TBA         | TBA                 | 0.04s (4414, 210)  |
-| 69      | TBA         | TBA                 | 0.04s (2225, 2536) |
-| 70      | TBA         | TBA                 | 0.04s (3877, 1023) |
-| 71      | TBA         | TBA                 | 0.04s (2440, 2601) |
-| 72      | TBA         | TBA                 | 0.04s (4921, 263)  |
-| 73      | TBA         | TBA                 | 0.04s (2474, 2855) |
-| 74      | TBA         | TBA                 | 0.04s (4265, 1211) |
-| 75      | TBA         | TBA                 | 0.04s (2699, 2926) |
-| 76      | TBA         | TBA                 | 0.04s (5506, 270)  |
-| 77      | TBA         | TBA                 | 0.05s (2768, 3161) |
-| 78      | TBA         | TBA                 | 0.05s (4828, 1256) |
-| 79      | TBA         | TBA                 | 0.05s (3006, 3235) |
-| 80      | TBA         | TBA                 | 0.05s (6091, 309)  |
-| 81      | TBA         | TBA                 | 0.05s (3027, 3524) |
-| 82      | TBA         | TBA                 | 0.05s (5192, 1532) |
-| 83      | TBA         | TBA                 | 0.05s (3333, 3556) |
-| 84      | TBA         | TBA                 | 0.05s (6655, 401)  |
-| 85      | TBA         | TBA                 | 0.05s (3307, 3918) |
-| 86      | TBA         | TBA                 | 0.05s (5717, 1679) |
-| 87      | TBA         | TBA                 | 0.06s (3581, 3988) |
-| 88      | TBA         | TBA                 | 0.06s (7352, 392)  |
-| 89      | TBA         | TBA                 | 0.06s (3600, 4321) |
-| 90      | TBA         | TBA                 | 0.06s (6163, 1937) |
-| 91      | TBA         | TBA                 | 0.06s (4006, 4275) |
-| 92      | TBA         | TBA                 | 0.06s (7972, 492)  |
-| 93      | TBA         | TBA                 | 0.06s (3925, 4724) |
-| 94      | TBA         | TBA                 | 0.07s (6730, 2106) |
-| 95      | TBA         | TBA                 | 0.07s (4309, 4716) |
-| 96      | TBA         | TBA                 | 0.07s (8721, 495)  |
-| 97      | TBA         | TBA                 | 0.07s (4267, 5142) |
-| 98      | TBA         | TBA                 | 0.07s (7337, 2272) |
-| 99      | TBA         | TBA                 | 0.07s (4727, 5074) |
-| 100     | TBA         | TBA                 | 0.07s (9503, 492)  |
+| N (NxN) | Brute-force      | Common Backtracking | Warnsdorff's Rule  |
+|---------|------------------|---------------------|--------------------|
+| 1       | 0.00s (1, 0)     | 0.00s (1, 0)        | 0.00s (1, 0)       |
+| 5       | 0.10s (13, 12)   | 0.16s (13, 12)      | 0.00s (10, 15)     |
+| 6       | 0.25s (24, 12)   | 0.19s (24, 12)      | 0.00s (36, 0)      |
+| 7       | 0.72s (16, 33)   | 0.16s (16, 33)      | 0.00s (20, 29)     |
+| 8       | 10.21s (6, 58)   | 6.61s (6, 58)       | 0.00s (63, 1)      |
+| 9       | Timeout (0, 81)  | Timeout (0, 81)     | 0.00s (41, 40)     |
+| 10      | Timeout (0, 100) | Timeout (0, 100)    | 0.00s (100, 0)     |
+| 11      | TBA              | TBA                 | 0.00s (59, 62)     |
+| 12      | TBA              | TBA                 | 0.00s (141, 3)     |
+| 13      | TBA              | TBA                 | 0.00s (84, 85)     |
+| 14      | TBA              | TBA                 | 0.00s (192, 4)     |
+| 15      | TBA              | TBA                 | 0.00s (113, 112)   |
+| 16      | TBA              | TBA                 | 0.00s (254, 2)     |
+| 17      | TBA              | TBA                 | 0.00s (144, 145)   |
+| 18      | TBA              | TBA                 | 0.00s (317, 7)     |
+| 19      | TBA              | TBA                 | 0.00s (178, 183)   |
+| 20      | TBA              | TBA                 | 0.00s (395, 5)     |
+| 21      | TBA              | TBA                 | 0.00s (216, 225)   |
+| 22      | TBA              | TBA                 | 0.00s (478, 6)     |
+| 23      | TBA              | TBA                 | 0.00s (263, 266)   |
+| 24      | TBA              | TBA                 | 0.00s (566, 10)    |
+| 25      | TBA              | TBA                 | 0.00s (310, 315)   |
+| 26      | TBA              | TBA                 | 0.00s (658, 18)    |
+| 27      | TBA              | TBA                 | 0.01s (356, 373)   |
+| 28      | TBA              | TBA                 | 0.01s (774, 10)    |
+| 29      | TBA              | TBA                 | 0.01s (417, 424)   |
+| 30      | TBA              | TBA                 | 0.01s (849, 51)    |
+| 31      | TBA              | TBA                 | 0.01s (480, 481)   |
+| 32      | TBA              | TBA                 | 0.01s (975, 49)    |
+| 33      | TBA              | TBA                 | 0.01s (537, 552)   |
+| 34      | TBA              | TBA                 | 0.01s (1045, 111)  |
+| 35      | TBA              | TBA                 | 0.01s (607, 618)   |
+| 36      | TBA              | TBA                 | 0.01s (1248, 48)   |
+| 37      | TBA              | TBA                 | 0.01s (673, 696)   |
+| 38      | TBA              | TBA                 | 0.01s (1268, 176)  |
+| 39      | TBA              | TBA                 | 0.01s (746, 775)   |
+| 40      | TBA              | TBA                 | 0.01s (1530, 70)   |
+| 41      | TBA              | TBA                 | 0.01s (829, 852)   |
+| 42      | TBA              | TBA                 | 0.01s (1543, 221)  |
+| 43      | TBA              | TBA                 | 0.01s (914, 935)   |
+| 44      | TBA              | TBA                 | 0.01s (1852, 84)   |
+| 45      | TBA              | TBA                 | 0.01s (968, 1057)  |
+| 46      | TBA              | TBA                 | 0.02s (1778, 338)  |
+| 47      | TBA              | TBA                 | 0.02s (1082, 1127) |
+| 48      | TBA              | TBA                 | 0.02s (2204, 100)  |
+| 49      | TBA              | TBA                 | 0.02s (1148, 1253) |
+| 50      | TBA              | TBA                 | 0.02s (2116, 384)  |
+| 51      | TBA              | TBA                 | 0.02s (1274, 1327) |
+| 52      | TBA              | TBA                 | 0.02s (2587, 117)  |
+| 53      | TBA              | TBA                 | 0.02s (1352, 1457) |
+| 54      | TBA              | TBA                 | 0.02s (2405, 511)  |
+| 55      | TBA              | TBA                 | 0.02s (1476, 1549) |
+| 56      | TBA              | TBA                 | 0.02s (2972, 164)  |
+| 57      | TBA              | TBA                 | 0.02s (1548, 1701) |
+| 58      | TBA              | TBA                 | 0.03s (2791, 573)  |
+| 59      | TBA              | TBA                 | 0.03s (1697, 1784) |
+| 60      | TBA              | TBA                 | 0.03s (3448, 152)  |
+| 61      | TBA              | TBA                 | 0.03s (1770, 1951) |
+| 62      | TBA              | TBA                 | 0.03s (3143, 701)  |
+| 63      | TBA              | TBA                 | 0.03s (1918, 2051) |
+| 64      | TBA              | TBA                 | 0.03s (3874, 222)  |
+| 65      | TBA              | TBA                 | 0.03s (2011, 2214) |
+| 66      | TBA              | TBA                 | 0.03s (3480, 876)  |
+| 67      | TBA              | TBA                 | 0.03s (2181, 2308) |
+| 68      | TBA              | TBA                 | 0.04s (4414, 210)  |
+| 69      | TBA              | TBA                 | 0.04s (2225, 2536) |
+| 70      | TBA              | TBA                 | 0.04s (3877, 1023) |
+| 71      | TBA              | TBA                 | 0.04s (2440, 2601) |
+| 72      | TBA              | TBA                 | 0.04s (4921, 263)  |
+| 73      | TBA              | TBA                 | 0.04s (2474, 2855) |
+| 74      | TBA              | TBA                 | 0.04s (4265, 1211) |
+| 75      | TBA              | TBA                 | 0.04s (2699, 2926) |
+| 76      | TBA              | TBA                 | 0.04s (5506, 270)  |
+| 77      | TBA              | TBA                 | 0.05s (2768, 3161) |
+| 78      | TBA              | TBA                 | 0.05s (4828, 1256) |
+| 79      | TBA              | TBA                 | 0.05s (3006, 3235) |
+| 80      | TBA              | TBA                 | 0.05s (6091, 309)  |
+| 81      | TBA              | TBA                 | 0.05s (3027, 3524) |
+| 82      | TBA              | TBA                 | 0.05s (5192, 1532) |
+| 83      | TBA              | TBA                 | 0.05s (3333, 3556) |
+| 84      | TBA              | TBA                 | 0.05s (6655, 401)  |
+| 85      | TBA              | TBA                 | 0.05s (3307, 3918) |
+| 86      | TBA              | TBA                 | 0.05s (5717, 1679) |
+| 87      | TBA              | TBA                 | 0.06s (3581, 3988) |
+| 88      | TBA              | TBA                 | 0.06s (7352, 392)  |
+| 89      | TBA              | TBA                 | 0.06s (3600, 4321) |
+| 90      | TBA              | TBA                 | 0.06s (6163, 1937) |
+| 91      | TBA              | TBA                 | 0.06s (4006, 4275) |
+| 92      | TBA              | TBA                 | 0.06s (7972, 492)  |
+| 93      | TBA              | TBA                 | 0.06s (3925, 4724) |
+| 94      | TBA              | TBA                 | 0.07s (6730, 2106) |
+| 95      | TBA              | TBA                 | 0.07s (4309, 4716) |
+| 96      | TBA              | TBA                 | 0.07s (8721, 495)  |
+| 97      | TBA              | TBA                 | 0.07s (4267, 5142) |
+| 98      | TBA              | TBA                 | 0.07s (7337, 2272) |
+| 99      | TBA              | TBA                 | 0.07s (4727, 5074) |
+| 100     | TBA              | TBA                 | 0.07s (9503, 492)  |
 
 ### Conclusion
 
 The Warnsdorff's Rule just took about 0.07s for finding a random solution
 (in the first try) on the 100x100 chessboard.
+
+### Margin of Error
+
+Please take a note that the Brute-force and the common backtracking
+analysis result contains margin of error. The first try result from
+random starting point is only taken by one arbitrary sample which is
+not the optimal one. Hence, there may be unfair result occurred.
 
 ## License
 

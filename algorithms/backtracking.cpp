@@ -15,7 +15,7 @@ using namespace std;
 
 int main() {
   // Chessboard NxN
-  int n = 9;
+  int n = 8;
 
   // Chessboard first initialization
   vector<vector<int>> board (n, vector<int>(n, 0));
@@ -62,7 +62,7 @@ int main() {
   clock_t start = clock();
   int limit = 20;
 
-  /*! Warnsdorff's rule implementation with Backtracking method
+  /*! Common backtracking approach.
    * I.S: Blank state chessboard.
    * F.S: Return true if the Knight's tour could be performed.
    *      Otherwise, false. Chessboard has been filled out.

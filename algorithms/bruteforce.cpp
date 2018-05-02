@@ -15,7 +15,7 @@ using namespace std;
 
 int main() {
   // Chessboard NxN
-  int n = 9;
+  int n = 8;
 
   // Knight's legal moves
   vector<vector<int>> board (n, vector<int>(n, 0));
