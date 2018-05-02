@@ -31,7 +31,7 @@ int main() {
   };
 
   // Knight's move checker
-  function<bool(int, int)> moveable = [n, &board](int x, int y) {
+  function<bool(int, int)> moveable = [n](int x, int y) {
     return x > -1 && y > -1 && x < n && y < n;
   };
 
@@ -49,7 +49,7 @@ int main() {
     &moveable,
     &tourable,
     &visited
-  ] (int x, int y, int p) {
+  ](int x, int y, int p) {
     // Mark the chessboard
     board[x][y] = p;
 
@@ -125,19 +125,26 @@ int main() {
     board = v;
   };
 
+  // Return microseconds to seconds
+  function<float(clock_t)> toSecs = [](clock_t start) {
+    return (clock() - start) / 1000000.0;
+  };
+
+  clock_t start = clock();
+
   // Find all solutions from each legal starting point
   function<void()> findAllSolutions =
   [
     n,
     &initializeBoard,
     &printBoard,
-    &tourable
+    &toSecs,
+    &tourable,
+    &start
   ]() {
     // Used for stats
     int fails = 0;
     int success = 0;
-
-    clock_t start = clock();
 
     printf(" There are %d starting points.\n", n * n);
     printf(" Finding the solution from each starting point...\n");
@@ -162,7 +169,7 @@ int main() {
       }
     }
 
-    printf(" Took about %.2f seconds.\n", (clock() - start) / 1000000.0);
+    printf(" Took about %.2f seconds.\n", toSecs(start));
     printf(" Success: %d starting point(s).\n", success);
     printf(" Failure: %d starting point(s).\n", fails);
   };
@@ -170,18 +177,18 @@ int main() {
   // Find the solution from a random starting point
   function<void()> findRandomSolution =
   [
-    &n,
+    n,
     &initializeBoard,
     &printBoard,
-    &tourable
+    &toSecs,
+    &tourable,
+    &start
   ]() {
     srand(time(0));
 
     int x = rand() % n;
     int y = rand() % n;
     int tries = 0;
-
-    clock_t start = clock();
 
     while (!tourable(x, y, 1) && tries < n * n) {
       tries++;
@@ -204,7 +211,7 @@ int main() {
     }
 
     printf("\n");
-    printf(" Took about %.2f seconds", (clock() - start) / 1000000.0);
+    printf(" Took about %.2f seconds", toSecs(start));
     printf(" after %d", ++tries);
 
     if (tries < 2)
@@ -214,7 +221,6 @@ int main() {
 
     printf(".\n");
   };
-
 
   /*!
    * Choose one from findAllSolutions or findRandomSolution helper.

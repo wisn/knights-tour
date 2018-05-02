@@ -1,76 +1,224 @@
-#include <iostream>
-#include <vector>
+/*!
+ * Knight's Tour
+ * Backtracking implementation
+ *
+ * @author  Wisnu Adi Nurcahyo
+ * @license The MIT License
+ */
+
+#include <bits/stdc++.h>
 using namespace std;
 
 int main() {
-  int n = 6; // NxN board
-  unsigned long long time_, timeout = 10000000;
-  vector<vector<int>> sol (n, vector<int>(n, -1));
+  // Chessboard NxN
+  int n = 8;
+  // unsigned long long time_, timeout = 10000000;
+  vector<vector<int>> board (n, vector<int>(n, -1));
 
+  // Knight's legal moves
   vector<vector<int>> moves {
     {2, 1}, {1, 2}, {-1, 2}, {-2, 1}, {-2, -1}, {-1, -2}, {1, -2}, {2, -1}
   };
 
-  int s[2] = {0, 0}; // Starting point
+  // Starting point
+  int s[2] = {0, 0};
 
-  function<bool(int, int)> isSafe;
-  isSafe = [n, &sol](int x, int y) {
-    return x > -1 && x < n && y > -1 && y < n && sol[x][y] == -1;
+  function<bool(int, int)> moveable = [n](int x, int y) {
+    return x > -1 && x < n && y > -1 && y < n;
   };
 
-  function<bool(int, int, int)> isPossible;
-  isPossible =
-  [n, moves, &sol, &isSafe, &isPossible, &time_, &timeout](int x, int y, int i) {
+  function<bool(int, int)> visited = [&board](int x, int y) {
+    return board[x][y] > -1;
+  };
+
+  // Return microseconds to seconds
+  function<float(clock_t)> toSecs = [](clock_t start) {
+    return (clock() - start) / 1000000.0;
+  };
+
+  function<bool(clock_t, int)> isTimeout = [&toSecs](clock_t start, int limit) {
+    return toSecs(start) >= (limit / 1.0);
+  };
+
+  clock_t start = clock();
+  int limit = 20;
+
+  function<bool(int, int, int)> tourable =
+  [
+    n,
+    moves,
+    &board,
+    &isTimeout,
+    &limit,
+    &moveable,
+    &start,
+    &toSecs,
+    &tourable,
+    &visited
+  ](int x, int y, int i) {
     if (i == (n * n)) return true;
 
-    if (time_ > timeout) return false;
+    if (isTimeout(start, limit)) return false;
 
     for (int k = 0; k < 8; k++) {
       int nx = x + moves[k][0];
       int ny = y + moves[k][1];
 
-      if (isSafe(nx, ny)) {
-        sol[nx][ny] = i;
+      if (moveable(nx, ny) && !visited(nx, ny)) {
+        board[nx][ny] = i + 1;
 
-        if (isPossible(nx, ny, i + 1))
+        if (tourable(nx, ny, i + 1))
           return true;
         else
-          sol[nx][ny] = -1;
+          board[nx][ny] = -1;
       }
     }
-
-    time_++;
 
     return false;
   };
 
-  for (int i = 0; i < n; i++) {
-    for (int j = 0; j < n; j++) {
-      sol[i][j] = 0;
-      time_ = 0;
+  // Chessboard printer
+  function<void()> printBoard = [n, &board]() {
+    int maxdigit = log10(n * n);
 
-      printf("(%d,%d)\n", i, j);
-      if (isPossible(i, j, 1)) {
-        for (int i = 0; i < n; i++) {
-          for (int j = 0; j < n; j++)
-            printf(" %3d", sol[i][j]);
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n; j++) {
+        int step = board[i][j];
+        int digit = log10(step);
 
-          printf("\n");
-        }
+        for (int k = 0; k < maxdigit - digit; k++)
+          printf(" ");
+
+        printf(" %d", step);
+
+        if (j < n - 1) printf(" ");
       }
-      else
-        if (time_ < timeout)
-          printf("Solution doesn't exist.\n");
-        else
-          printf("Timeout.\n");
-
-      for (int k = 0; k < n; k++)
-        for (int l = 0; l < n; l++)
-          sol[k][l] = -1;
 
       printf("\n");
     }
-  }
+  };
+
+  // Chessboard initialization helper
+  function<void()> initializeBoard = [n, &board]() {
+    vector<vector<int>> v (n, vector<int>(n, -1));
+
+    board = v;
+  };
+
+  function<void()> findAllSolutions =
+  [
+    n,
+    limit,
+    &board,
+    &initializeBoard,
+    &isTimeout,
+    &printBoard,
+    &start,
+    &toSecs,
+    &tourable
+  ]() {
+    // Used for stats
+    int fails = 0;
+    int success = 0;
+    clock_t total = clock();
+
+    printf(" There are %d starting points.\n", n * n);
+    printf(" Finding the solution from each starting point...\n");
+    printf("\n");
+
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n; j++) {
+        board[i][j] = 1;
+        start = clock();
+
+        printf(" (%d, %d)\n", i, j);
+
+        if (tourable(i, j, 1)) {
+          printBoard();
+          success++;
+        }
+        else {
+          fails++;
+          if (!isTimeout(start, limit))
+            printf(" Solution doesn't exist.\n");
+          else
+            printf(" Timeout.\n");
+        }
+
+        initializeBoard();
+
+        printf("\n");
+      }
+    }
+
+    printf(" Took about %.2f seconds.\n", toSecs(total));
+    printf(" Success: %d starting point(s).\n", success);
+    printf(" Failure: %d starting point(s).\n", fails);
+  };
+
+  function<void()> findRandomSolution =
+  [
+    n,
+    limit,
+    &board,
+    &initializeBoard,
+    &isTimeout,
+    &printBoard,
+    &start,
+    &toSecs,
+    &tourable
+  ]() {
+    srand(time(0));
+
+    int x, y;
+    int tries = 0;
+    clock_t total = clock();
+
+    do {
+      tries++;
+      x = rand() % n;
+      y = rand() % n;
+
+      initializeBoard();
+
+      start = clock();
+      board[x][y] = 1;
+    } while (!tourable(x, y, 1) && tries < n * n);
+
+    printf(" Finding a random solution from the %dx%d chessboard.\n", n, n);
+    printf("\n");
+
+    if (tries >= n * n) {
+      if (isTimeout(start, limit))
+        printf(" Timeout for each possible solution.\n");
+      else
+        printf(" The solution doesn't exist.\n");
+    }
+    else {
+      printf(" Found a solution at starting point");
+      printf(" (%d, %d).\n", x, y);
+      printBoard();
+    }
+
+    printf("\n");
+    printf(" Took about %.2f seconds", toSecs(total));
+    printf(" after %d", tries);
+
+    if (tries < 2)
+      printf(" try");
+    else
+      printf(" tries");
+
+    printf(".\n");
+  };
+
+  /*!
+   * Choose one from findAllSolutions or findRandomSolution helper.
+   */
+
+  // findAllSolutions();
+
+  findRandomSolution();
 
   return 0;
 }
