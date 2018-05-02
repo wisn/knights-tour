@@ -15,9 +15,7 @@ using namespace std;
 
 int main() {
   // Chessboard NxN
-  // int n = 8;
-  int n;
-  scanf("%d", &n);
+  int n = 9;
 
   // Chessboard first initialization
   vector<vector<int>> board (n, vector<int>(n, 0));
@@ -250,9 +248,9 @@ int main() {
    * Choose one from findAllSolutions or findRandomSolution helper.
    */
 
-  findAllSolutions();
+  // findAllSolutions();
 
-  // findRandomSolution();
+  findRandomSolution();
 
   return 0;
 }
