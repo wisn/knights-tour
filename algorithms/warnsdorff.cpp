@@ -148,7 +148,7 @@ int main() {
     board = v;
   };
 
-  /*! Return microseconds to seconds
+  /*! Convert a microseconds to a seconds
    * I.S: -
    * F.S: Return the seconds form in the integer data type.
    */

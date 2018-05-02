@@ -7,7 +7,7 @@ This repository created for educational purpose.
 ## Implementation
 
 * [ ] Brute-force algorithm
-* [ ] Common backtracking algorithm
+* [x] Common backtracking algorithm
 * [x] Warnsdorff's rule algorithm
 
 ## Outputs
@@ -109,12 +109,13 @@ where
 `B` is the number of success starting point(s),
 and `C` is the number of fails starting point(s).
 The fails starting point could be either timeout or no solution found.
+The timeout limit is 20 seconds for each starting point.
 
 | N (NxN) | Brute-force | Common Backtracking | Warnsdorff's Rule  |
 |---------|-------------|---------------------|--------------------|
-| 1       | TBA         | TBA                 | 0.00s (1, 0)       |
-| 5       | TBA         | TBA                 | 0.00s (10, 15)     |
-| 6       | TBA         | TBA                 | 0.00s (36, 0)      |
+| 1       | TBA         | 0.00s (1, 0)        | 0.00s (1, 0)       |
+| 5       | TBA         | 34.31s (13, 12)     | 0.00s (10, 15)     |
+| 6       | TBA         | 285.19s (24, 12)    | 0.00s (36, 0)      |
 | 7       | TBA         | TBA                 | 0.00s (20, 29)     |
 | 8       | TBA         | TBA                 | 0.00s (63, 1)      |
 | 9       | TBA         | TBA                 | 0.00s (41, 40)     |

@@ -6,36 +6,57 @@
  * @license The MIT License
  */
 
-#include <bits/stdc++.h>
+#include <cmath>
+#include <ctime>
+#include <functional>
+#include <iostream>
+#include <vector>
 using namespace std;
 
 int main() {
   // Chessboard NxN
-  int n = 8;
-  // unsigned long long time_, timeout = 10000000;
-  vector<vector<int>> board (n, vector<int>(n, -1));
+  // int n = 8;
+  int n;
+  scanf("%d", &n);
+
+  // Chessboard first initialization
+  vector<vector<int>> board (n, vector<int>(n, 0));
 
   // Knight's legal moves
   vector<vector<int>> moves {
-    {2, 1}, {1, 2}, {-1, 2}, {-2, 1}, {-2, -1}, {-1, -2}, {1, -2}, {2, -1}
+    {1, 2}, {2, 1}, {-1, 2}, {1, -2}, {-2, 1}, {2, -1}, {-2, -1}, {-1, -2}
   };
 
-  // Starting point
-  int s[2] = {0, 0};
-
+  /*! Knight's move checker
+   * I.S: -
+   * F.S: Return true if the Knight could be moved to (x, y) point.
+   *      Otherwise, false.
+   */
   function<bool(int, int)> moveable = [n](int x, int y) {
     return x > -1 && x < n && y > -1 && y < n;
   };
 
+  /*! Chessboard visits checker
+   * I.S: -
+   * F.S: Return true if the board at the (x, y) point has been visited.
+   *      Otherwise, false.
+   */
   function<bool(int, int)> visited = [&board](int x, int y) {
-    return board[x][y] > -1;
+    return board[x][y] > 0;
   };
 
-  // Return microseconds to seconds
+  /*! Convert a microseconds to a seconds
+   * I.S: -
+   * F.S: Return the seconds form in the integer data type.
+   */
   function<float(clock_t)> toSecs = [](clock_t start) {
     return (clock() - start) / 1000000.0;
   };
 
+  /*! Timeout checker
+   * I.S: The running tour with a defined time limit.
+   * F.S: Return true if the limit passed. Otherwise, false.
+   */
   function<bool(clock_t, int)> isTimeout = [&toSecs](clock_t start, int limit) {
     return toSecs(start) >= (limit / 1.0);
   };
@@ -43,6 +64,11 @@ int main() {
   clock_t start = clock();
   int limit = 20;
 
+  /*! Warnsdorff's rule implementation with Backtracking method
+   * I.S: Blank state chessboard.
+   * F.S: Return true if the Knight's tour could be performed.
+   *      Otherwise, false. Chessboard has been filled out.
+   */
   function<bool(int, int, int)> tourable =
   [
     n,
@@ -77,7 +103,10 @@ int main() {
     return false;
   };
 
-  // Chessboard printer
+  /*! Chessboard printer
+   * I.S: -
+   * F.S: Print out the chessboard state with a pretty print format.
+   */
   function<void()> printBoard = [n, &board]() {
     int maxdigit = log10(n * n);
 
@@ -98,13 +127,17 @@ int main() {
     }
   };
 
-  // Chessboard initialization helper
+  /*! Chessboard initialization helper
+   * I.S: Current chessboard state
+   * F.S: Reset the chessboard and fill `0` on the each grid.
+   */
   function<void()> initializeBoard = [n, &board]() {
-    vector<vector<int>> v (n, vector<int>(n, -1));
+    vector<vector<int>> v (n, vector<int>(n, 0));
 
     board = v;
   };
 
+  // Find all solutions from each legal starting point
   function<void()> findAllSolutions =
   [
     n,
@@ -156,6 +189,7 @@ int main() {
     printf(" Failure: %d starting point(s).\n", fails);
   };
 
+  // Find the solution from a random starting point
   function<void()> findRandomSolution =
   [
     n,
@@ -174,6 +208,9 @@ int main() {
     int tries = 0;
     clock_t total = clock();
 
+    printf(" Finding a random solution from the %dx%d chessboard.\n", n, n);
+    printf("\n");
+
     do {
       tries++;
       x = rand() % n;
@@ -184,9 +221,6 @@ int main() {
       start = clock();
       board[x][y] = 1;
     } while (!tourable(x, y, 1) && tries < n * n);
-
-    printf(" Finding a random solution from the %dx%d chessboard.\n", n, n);
-    printf("\n");
 
     if (tries >= n * n) {
       if (isTimeout(start, limit))
@@ -211,14 +245,14 @@ int main() {
 
     printf(".\n");
   };
-
+ 
   /*!
    * Choose one from findAllSolutions or findRandomSolution helper.
    */
 
-  // findAllSolutions();
+  findAllSolutions();
 
-  findRandomSolution();
+  // findRandomSolution();
 
   return 0;
 }
