@@ -201,6 +201,9 @@ int main() {
     int tries = 0;
     clock_t total = clock();
 
+    printf(" Finding a random solution from the %dx%d chessboard.\n", n, n);
+    printf("\n");
+
     do {
       tries++;
       x = rand() % n;
@@ -213,9 +216,6 @@ int main() {
       tour(x, y, 1);
 
     } while (checker != n * n && tries < n * n);
-
-    printf(" Finding a random solution from the %dx%d chessboard.\n", n, n);
-    printf("\n");
 
     if (tries >= n * n) {
       if (isTimeout(start, limit))

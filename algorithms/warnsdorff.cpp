@@ -216,6 +216,9 @@ int main() {
     int y = rand() % n;
     int tries = 0;
 
+    printf(" Finding a random solution from the %dx%d chessboard.\n", n, n);
+    printf("\n");
+
     while (!tourable(x, y, 1) && tries < n * n) {
       tries++;
 
@@ -224,9 +227,6 @@ int main() {
 
       initializeBoard();
     }
-
-    printf(" Finding a random solution from the %dx%d chessboard.\n", n, n);
-    printf("\n");
 
     if (tries >= n * n)
       printf(" The solution doesn't exist.\n");

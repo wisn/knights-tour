@@ -94,7 +94,7 @@ int main() {
         if (tourable(nx, ny, i + 1))
           return true;
         else
-          board[nx][ny] = -1;
+          board[nx][ny] = 0;
       }
     }
 
